@@ -138,7 +138,6 @@ void AMainCharacter::TakeDamage()
 		UE_LOG(LogTemp, Warning, TEXT("You took Damage: Health = %d"), CurrentHealth);
 
 		UGameplayStatics::PlaySound2D(GetWorld(), DamageSound);
-
 		if (CurrentHealth == 0) {
 			Die();
 		}
