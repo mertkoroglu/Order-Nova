@@ -23,7 +23,8 @@ AMainCharacter::AMainCharacter() :
 	CurrentHealth(3),
 	bDead(false),
 	bYouWin(false),
-	InterpSpeed(3.f)
+	InterpSpeed(3.f),
+	bCanGetDamaged(true)
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -133,7 +134,7 @@ void AMainCharacter::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor*
 
 void AMainCharacter::TakeDamage()
 {
-	if (!bYouWin) {
+	if (!bYouWin && bCanGetDamaged) {
 		CurrentHealth--;
 		UE_LOG(LogTemp, Warning, TEXT("You took Damage: Health = %d"), CurrentHealth);
 
@@ -141,6 +142,8 @@ void AMainCharacter::TakeDamage()
 		if (CurrentHealth == 0) {
 			Die();
 		}
+		bCanGetDamaged = false;
+		GetWorldTimerManager().SetTimer(ResetDamageTimer, this, &AMainCharacter::UpdateCanGetDamaged, 1.f, false);
 	}
 }
 
@@ -200,6 +203,11 @@ void AMainCharacter::YouWon()
 void AMainCharacter::FinishGame()
 {
 	OnWin.Broadcast();
+}
+
+void AMainCharacter::UpdateCanGetDamaged()
+{
+	bCanGetDamaged = true;
 }
 
 void AMainCharacter::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)

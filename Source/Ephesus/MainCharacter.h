@@ -40,6 +40,8 @@ private:
 	FTimerHandle DisableMouseRotationTimer;
 	FTimerHandle WallHitTimer;
 	FTimerHandle DieTimer;
+	FTimerHandle ResetDamageTimer;
+
 	bool bCanRotate;
 
 	FRotator HitTargetRotation;
@@ -75,7 +77,7 @@ private:
 	float InterpSpeed;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sounds", meta = (AllowPrivateAccess = "true"))
 	class USoundCue* DamageSound;
-
+	bool bCanGetDamaged;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -97,6 +99,7 @@ protected:
 	UFUNCTION()
 	void YouWon();
 	void FinishGame();
+	void UpdateCanGetDamaged();
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
