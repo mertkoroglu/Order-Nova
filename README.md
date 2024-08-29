@@ -12,6 +12,9 @@
 - **Dynamic Hazards:** Watch out! Bullets that bounce once and turn red can damage you.
 - **Survival Challenge:** Eliminate and avoid enemies to survive the 1 minute and 30-second ambush.
 
+### Gameplay Overview
+[![Order: Nova Gameplay](https://img.youtube.com/vi/RTITxKYwQpo/0.jpg)](https://www.youtube.com/watch?v=RTITxKYwQpo)
+
 ### Screenshots:
 
 ![Screenshot (195)](https://github.com/user-attachments/assets/cf54b2b7-8334-471c-8c09-fb9b7fffdaa3)
